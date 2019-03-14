@@ -7,7 +7,6 @@
 namespace Drupal\commerce_autosku;
 
 use Drupal\commerce_product\Entity\ProductVariationInterface;
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -266,9 +265,9 @@ class CommerceAutoSkuManager implements CommerceAutoSkuManagerInterface {
 
     $i = 0;
     while (!$this->isSkuUnique($entity, $output)) {
-      $counter_length = Unicode::strlen($i) + 1;
+      $counter_length = mb_strlen($i) + 1;
       $un_prefixed_max_length = 255 - $counter_length;
-      $sku = Unicode::substr($generated_sku, 0, $un_prefixed_max_length);
+      $sku = mb_substr($generated_sku, 0, $un_prefixed_max_length);
       $output = $sku . '_' . $i;
       $i++;
     };
