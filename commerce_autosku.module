@@ -19,7 +19,7 @@ use Drupal\Core\Url;
  */
 function commerce_autosku_entity_type_alter(array &$entity_types) {
   $edit_link = $entity_types['commerce_product_variation_type']->getLinkTemplate('edit-form');
-  $autosku_link = Unicode::substr($edit_link, 0, -5);
+  $autosku_link = mb_substr($edit_link, 0, -5);
   $entity_types['commerce_product_variation_type']->setLinkTemplate('auto-sku', $autosku_link . "/auto-sku");
 }
 
